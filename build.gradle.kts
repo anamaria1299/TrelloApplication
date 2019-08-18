@@ -23,18 +23,19 @@ repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
     // This dependency is used by the application.
     implementation("com.google.guava:guava:27.1-jre")
+    implementation(kotlin("stdlib"))
 
     // Use JUnit test framework
     testImplementation("junit:junit:4.12")
 
     //SpringBoot dependency
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtime("org.springframework.boot:spring-boot-starter-tomcat")
 }
 
