@@ -12,7 +12,6 @@ import java.util.*;
 @Component
 public class BoardServiceImp implements BoardService {
 
-
     @Autowired
     Board board;
 
@@ -41,7 +40,8 @@ public class BoardServiceImp implements BoardService {
     @Override
     public Board createBoard(Board board) {
 
-        // TODO validate uuid or generate it
+        UUID id = UUID.randomUUID();
+        board.setId(id);
         boards.put(board.getId(), board);
         return board;
     }
@@ -61,18 +61,21 @@ public class BoardServiceImp implements BoardService {
     }
 
     @Override
-    public BoardList getListByName(UUID id, String name) {
-        return null;
+    public BoardList getListByName(UUID id, String name) throws Exception {
+
+        return boards.get(id).getListByName(name);
     }
 
     @Override
-    public BoardList addCardToList(UUID id, String name, Card card) {
-        return null;
+    public Card addCardToList(UUID id, String name, Card card) throws Exception {
+
+        return boards.get(id).getListByName(name).addCard(card);
     }
 
     @Override
-    public List<Card> getCards(UUID id, String name) {
-        return null;
+    public List<Card> getCards(UUID id, String name) throws Exception {
+
+        return boards.get(id).getListByName(name).getCards();
     }
 
     @Override

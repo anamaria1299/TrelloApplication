@@ -11,7 +11,7 @@ public class Board {
 
     private UUID id;
     private String name;
-    private List<BoardList> lists;
+    private List<BoardList> lists = new ArrayList<BoardList>();
 
     public Board() {}
 
@@ -19,7 +19,6 @@ public class Board {
 
         this.name= name;
         this.id= id;
-        this.lists = new ArrayList<BoardList>();
     }
 
     public void addList(BoardList list) {
@@ -51,5 +50,16 @@ public class Board {
 
     public void setLists(List<BoardList> lists) {
         this.lists = lists;
+    }
+
+    public BoardList getListByName(String name) throws Exception {
+
+        for(BoardList l: lists) {
+            if(l.getName().equals(name)) {
+                return l;
+            }
+        }
+
+        throw new Exception("There are not any list with name" + name);
     }
 }

@@ -21,11 +21,11 @@ public interface BoardService {
 
     List<BoardList> getLists(UUID id);
 
-    BoardList getListByName(UUID id, String name);
+    BoardList getListByName(UUID id, String name) throws Exception;
 
-    BoardList addCardToList(UUID id, String name, Card card);
+    Card addCardToList(UUID id, String name, Card card) throws Exception;
 
-    List<Card> getCards(UUID id, String name);
+    List<Card> getCards(UUID id, String name) throws Exception;
 
     Card getCardByName(UUID id, String name, String cardName);
 }

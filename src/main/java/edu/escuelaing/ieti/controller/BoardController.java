@@ -2,6 +2,7 @@ package edu.escuelaing.ieti.controller;
 
 import edu.escuelaing.ieti.model.Board;
 import edu.escuelaing.ieti.model.BoardList;
+import edu.escuelaing.ieti.model.Card;
 import edu.escuelaing.ieti.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -79,6 +80,42 @@ public class BoardController {
         } catch (Exception e) {
 
             return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @GetMapping("{id}/lists/{name}")
+    public ResponseEntity<?> getListByName(@PathVariable String id, @PathVariable String name) {
+
+        UUID uuid = UUID.fromString(id);
+
+        try {
+            return new ResponseEntity<>(boardService.getListByName(uuid, name), HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("{id}/lists/{name}/cards")
+    public ResponseEntity<?> addCardToList(@PathVariable String id, @PathVariable String name, @RequestBody Card card) {
+
+        UUID uuid = UUID.fromString(id);
+
+        try {
+            return new ResponseEntity<>(boardService.addCardToList(uuid, name, card), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @GetMapping("{id}/lists/{name}/cards")
+    public ResponseEntity<?> getCardsFromList(@PathVariable String id, @PathVariable String name) {
+
+        UUID uuid = UUID.fromString(id);
+
+        try {
+            return new ResponseEntity<>(boardService.getCards(uuid, name), HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }

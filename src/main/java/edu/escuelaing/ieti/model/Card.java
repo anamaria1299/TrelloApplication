@@ -1,19 +1,24 @@
 package edu.escuelaing.ieti.model;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Component
 public class Card {
 
-    private ArrayList<Label> labels;
+    private ArrayList<Label> labels = new ArrayList<Label>();
+    private Date creationDate = new Date();
+    private Member member;
     private String name;
-    private Date creationDate;
     private Date dueDate;
     private String description;
-    private List<Member> members;
     // TODO checklist
 
+
+    public Card() {}
 
     public Card(String name, String description, Date dueDate) {
 
@@ -21,8 +26,6 @@ public class Card {
         this.description = description;
         this.dueDate = dueDate;
         this.creationDate = new Date();
-        this.members = new ArrayList<Member>();
-        this.labels = new ArrayList<Label>();
     }
 
     public void addLabel(String name) {
@@ -30,9 +33,33 @@ public class Card {
         labels.add(new Label(name));
     }
 
-    public void addMember(Member member) {
+    public ArrayList<Label> getLabels() {
+        return labels;
+    }
 
-        members.add(member);
+    public Member getMember() {
+        return member;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setMember(Member member) {
+
+        this.member = member;
     }
 
     public void setName(String name) {
@@ -55,7 +82,7 @@ public class Card {
                 ", creationDate=" + creationDate +
                 ", dueDate=" + dueDate +
                 ", description='" + description + '\'' +
-                ", members=" + members +
+                ", member=" + member +
                 '}';
     }
 }

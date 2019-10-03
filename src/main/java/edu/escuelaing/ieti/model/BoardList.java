@@ -1,12 +1,15 @@
 package edu.escuelaing.ieti.model;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 
+@Component
 public class BoardList {
 
     private String name;
     private String description;
-    private ArrayList<Card> cards;
+    private ArrayList<Card> cards = new ArrayList<Card>();
 
     public BoardList() {}
 
@@ -14,12 +17,12 @@ public class BoardList {
 
         this.name = name;
         this.description = description;
-        this.cards = new ArrayList<Card>();
     }
 
-    public void addCard(Card card) {
+    public Card addCard(Card card) {
 
         cards.add(card);
+        return card;
     }
 
     public String getName() {
