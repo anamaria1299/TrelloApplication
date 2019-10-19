@@ -15,6 +15,14 @@ public class MemberServiceImp implements MemberService {
 
     private HashMap<UUID, Member> members = new HashMap<>();
 
+    public MemberServiceImp() {
+
+        Member user = new Member(UUID.randomUUID(),"Ana Rincon", "ana123", "anamaria@mail.com");
+        Member user1 = new Member(UUID.randomUUID(),"Andres Rodriguez", "andres123", "andres@mail.com");
+        members.put(user.getId(), user);
+        members.put(user1.getId(), user1);
+    }
+
     @Override
     public List<Member> getAllMembers() {
 
@@ -33,6 +41,18 @@ public class MemberServiceImp implements MemberService {
     public Member getMemberById(UUID id) {
 
         return members.get(id);
+    }
+
+    @Override
+    public Member getMemberByEmail(String email) throws Exception {
+
+        List<Member> memberList = getAllMembers();
+
+        for(Member m: memberList) {
+            if(m.getEmail().equals(email)) return m;
+        }
+
+        throw new Exception("Member with email [ "+ email + " ] does not exist");
     }
 
     @Override

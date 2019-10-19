@@ -13,5 +13,7 @@ public interface MemberService {
 
     Member getMemberById(UUID id);
 
+    Member getMemberByEmail(String email) throws Exception;
+
     Member createMember(Member member);
 }

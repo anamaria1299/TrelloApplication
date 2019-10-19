@@ -37,6 +37,9 @@ dependencies {
     //SpringBoot dependency
     implementation("org.springframework.boot:spring-boot-starter-web")
     runtime("org.springframework.boot:spring-boot-starter-tomcat")
+
+    //JWT
+    implementation("io.jsonwebtoken:jjwt:0.6.0")
 }
 
 
