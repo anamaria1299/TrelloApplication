@@ -40,6 +40,10 @@ dependencies {
 
     //JWT
     implementation("io.jsonwebtoken:jjwt:0.6.0")
+
+    //Mongo DB
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 

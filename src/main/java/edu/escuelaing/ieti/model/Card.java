@@ -4,14 +4,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Component
 public class Card {
 
     private ArrayList<Label> labels = new ArrayList<Label>();
     private Date creationDate = new Date();
-    private Member member;
+    private User user;
     private String name;
     private Date dueDate;
     private String description;
@@ -37,8 +36,8 @@ public class Card {
         return labels;
     }
 
-    public Member getMember() {
-        return member;
+    public User getUser() {
+        return user;
     }
 
     public String getName() {
@@ -57,9 +56,9 @@ public class Card {
         return description;
     }
 
-    public void setMember(Member member) {
+    public void setUser(User user) {
 
-        this.member = member;
+        this.user = user;
     }
 
     public void setName(String name) {
@@ -82,7 +81,7 @@ public class Card {
                 ", creationDate=" + creationDate +
                 ", dueDate=" + dueDate +
                 ", description='" + description + '\'' +
-                ", member=" + member +
+                ", user=" + user +
                 '}';
     }
 }

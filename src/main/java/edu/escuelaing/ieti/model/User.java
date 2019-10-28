@@ -5,16 +5,16 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class Member {
+public class User {
 
     private UUID id;
     private String name;
     private String password;
     private String email;
 
-    public Member() {}
+    public User() {}
 
-    public Member(UUID id, String name, String password, String email) {
+    public User(UUID id, String name, String password, String email) {
 
         this.id = id;
         this.name = name;
@@ -58,7 +58,7 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member{" +
+        return "User {" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +

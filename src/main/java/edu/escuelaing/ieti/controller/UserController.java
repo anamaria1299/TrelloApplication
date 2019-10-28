@@ -1,49 +1,47 @@
 package edu.escuelaing.ieti.controller;
 
-import edu.escuelaing.ieti.model.Member;
-import edu.escuelaing.ieti.service.MemberService;
+import edu.escuelaing.ieti.model.User;
+import edu.escuelaing.ieti.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
-import javax.websocket.server.PathParam;
 import java.util.Date;
 import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping(value = "/members")
+@RequestMapping(value = "/users")
 @Service
-public class MemberController {
+public class UserController {
 
     @Autowired
-    MemberService memberService;
+    UserService userService;
 
     @GetMapping()
-    public ResponseEntity<?> getAllMembers() {
+    public ResponseEntity<?> getAllUsers() {
 
         try {
 
-            return new ResponseEntity<>(memberService.getAllMembers(),HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(userService.getAllUsers(),HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<?> getMemberById(@PathVariable String id) {
+    public ResponseEntity<?> getUserById(@PathVariable String id) {
 
         UUID uuid = UUID.fromString(id);
 
         try {
 
-            return new ResponseEntity<>(memberService.getMemberById(uuid), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(userService.getUserById(uuid), HttpStatus.ACCEPTED);
         } catch (Exception e) {
 
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -51,11 +49,11 @@ public class MemberController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> createMember(@RequestBody Member member) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
 
         try {
 
-            return new ResponseEntity<>(memberService.createMember(member), HttpStatus.CREATED);
+            return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
         } catch (Exception e) {
 
             return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
@@ -63,7 +61,7 @@ public class MemberController {
     }
 
     @RequestMapping( value = "/login", method = RequestMethod.POST )
-    public Token login( @RequestBody Member login ) throws Exception {
+    public Token login( @RequestBody User login ) throws Exception {
 
         String jwtToken = "";
 
@@ -76,7 +74,7 @@ public class MemberController {
         String password = login.getPassword();
 
         //TODO implement logic to verify user credentials
-        Member user = memberService.getMemberByEmail(login.getEmail());
+        User user = userService.getUserByEmail(login.getEmail());
 
         if ( user == null )
         {
