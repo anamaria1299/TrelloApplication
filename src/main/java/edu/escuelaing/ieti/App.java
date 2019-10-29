@@ -19,13 +19,8 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
-import java.util.UUID;
-
 @SpringBootApplication
 public class App implements CommandLineRunner {
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Bean
     public FilterRegistrationBean jwtFilter()
@@ -42,14 +37,6 @@ public class App implements CommandLineRunner {
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfiguration.class);
         MongoOperations mongoOperation = (MongoOperations) applicationContext.getBean("mongoTemplate");
-
-        userRepository.deleteAll();
-
-        userRepository.save(new User(UUID.randomUUID(), "Ana Rincon", "user123", "anamaria@mail.com"));
-        userRepository.save(new User(UUID.randomUUID(),"Andres Rincon", "user123", "andres@mail.com"));
-        userRepository.save(new User(UUID.randomUUID(), "Carlos Castaneda", "user123", "carlos@mail.com"));
-        userRepository.save(new User(UUID.randomUUID(), "Alejandra Rincon", "user123", "alejandra@mail.com"));
-        userRepository.save(new User(UUID.randomUUID(), "John Ibanez", "user123", "john@mail.com"));
 
         Query query = new Query();
         query.addCriteria(Criteria.where("email").is("anamaria@mail.com"));

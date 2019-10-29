@@ -60,6 +60,6 @@ public class Board {
             }
         }
 
-        throw new Exception("There are not any list with name" + name);
+        throw new Exception("There is not any list with name" + name);
     }
 }

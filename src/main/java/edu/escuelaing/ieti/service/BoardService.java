@@ -27,5 +27,5 @@ public interface BoardService {
 
     List<Card> getCards(UUID id, String name) throws Exception;
 
-    Card getCardByName(UUID id, String name, String cardName);
+    Card getCardByName(UUID id, String name, String cardName) throws Exception;
 }

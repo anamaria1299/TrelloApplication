@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import java.util.Date;
-import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -34,14 +33,12 @@ public class UserController {
         }
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<?> getUserById(@PathVariable String id) {
-
-        UUID uuid = UUID.fromString(id);
+    @GetMapping("{email}")
+    public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
 
         try {
 
-            return new ResponseEntity<>(userService.getUserById(uuid), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.ACCEPTED);
         } catch (Exception e) {
 
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -99,12 +96,10 @@ public class UserController {
 
         String accessToken;
 
-
         public Token( String accessToken )
         {
             this.accessToken = accessToken;
         }
-
 
         public String getAccessToken()
         {

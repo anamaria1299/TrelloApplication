@@ -11,8 +11,6 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    User getUserById(UUID id);
-
     User getUserByEmail(String email) throws Exception;
 
     User createUser(User user);

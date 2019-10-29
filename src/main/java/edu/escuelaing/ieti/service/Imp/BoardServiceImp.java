@@ -79,7 +79,12 @@ public class BoardServiceImp implements BoardService {
     }
 
     @Override
-    public Card getCardByName(UUID id, String name, String cardName) {
-        return null;
+    public Card getCardByName(UUID id, String name, String cardName) throws Exception {
+
+        List<Card> cards = getCards(id, name);
+        for(Card c: cards) {
+            if(c.getName().equals(cardName)) return c;
+        }
+        throw new Exception("There is not any card with name: "+cardName+" on board "+id);
     }
 }

@@ -119,4 +119,16 @@ public class BoardController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("{id}/lists/{name}/cards/{cardName}")
+    public ResponseEntity<?> getCardByName(@PathVariable String id, @PathVariable String name, @PathVariable String cardName) {
+
+        UUID uuid = UUID.fromString(id);
+
+        try {
+            return new ResponseEntity<>(boardService.getCardByName(uuid, name, cardName), HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
 }

@@ -8,32 +8,21 @@ import java.util.Date;
 @Component
 public class Card {
 
-    private ArrayList<Label> labels = new ArrayList<Label>();
     private Date creationDate = new Date();
     private User user;
     private String name;
     private Date dueDate;
     private String description;
-    // TODO checklist
-
 
     public Card() {}
 
-    public Card(String name, String description, Date dueDate) {
+    public Card(String name, String description, Date dueDate, User user) {
 
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
         this.creationDate = new Date();
-    }
-
-    public void addLabel(String name) {
-
-        labels.add(new Label(name));
-    }
-
-    public ArrayList<Label> getLabels() {
-        return labels;
+        this.user = user;
     }
 
     public User getUser() {
@@ -76,8 +65,7 @@ public class Card {
     @Override
     public String toString() {
         return "Card{" +
-                "labels=" + labels +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", creationDate=" + creationDate +
                 ", dueDate=" + dueDate +
                 ", description='" + description + '\'' +
