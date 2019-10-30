@@ -1,28 +1,35 @@
 package edu.escuelaing.ieti.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 @Component
 public class Card {
 
+    @Id
+    private UUID id;
     private Date creationDate = new Date();
     private User user;
     private String name;
     private Date dueDate;
     private String description;
+    private int priority;
+    private String state;
 
     public Card() {}
 
-    public Card(String name, String description, Date dueDate, User user) {
+    public Card(String name, String description, Date dueDate, User user, UUID id, String state) {
 
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
         this.creationDate = new Date();
         this.user = user;
+        this.id = id;
+        this.state = state;
     }
 
     public User getUser() {
@@ -62,14 +69,36 @@ public class Card {
         this.description = description;
     }
 
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
     @Override
     public String toString() {
         return "Card{" +
-                "name='" + name + '\'' +
-                ", creationDate=" + creationDate +
+                "creationDate=" + creationDate +
+                ", user=" + user +
+                ", name='" + name + '\'' +
                 ", dueDate=" + dueDate +
                 ", description='" + description + '\'' +
-                ", user=" + user +
+                ", id=" + id +
+                ", priority=" + priority +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package edu.escuelaing.ieti.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -7,6 +8,7 @@ import java.util.UUID;
 @Component
 public class User {
 
+    @Id
     private UUID id;
     private String name;
     private String password;

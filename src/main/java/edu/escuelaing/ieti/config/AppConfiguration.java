@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import org.springframework.stereotype.Component;
 
 @Configuration
 public class AppConfiguration {
@@ -36,5 +37,5 @@ public class AppConfiguration {
         return mongoTemplate;
 
     }
-
 }
+

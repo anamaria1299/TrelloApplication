@@ -1,4 +1,4 @@
-package edu.escuelaing.ieti.service.Imp;
+package edu.escuelaing.ieti.service.Impl;
 
 import edu.escuelaing.ieti.model.User;
 import edu.escuelaing.ieti.repository.UserRepository;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 @Component
-public class UserServiceImp implements UserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     User user;
@@ -17,7 +17,7 @@ public class UserServiceImp implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserServiceImp() {}
+    public UserServiceImpl() {}
 
     @Override
     public List<User> getAllUsers() {
