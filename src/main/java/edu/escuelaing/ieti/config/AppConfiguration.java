@@ -19,8 +19,6 @@ public class AppConfiguration {
     @Bean
     public MongoDbFactory mongoDbFactory() throws Exception {
 
-        System.out.println(databaseURI);
-
         MongoClientURI uri = new MongoClientURI("mongodb+srv://admin:Admin.123@cluster0-5rpyo.mongodb.net/test?retryWrites=true&w=majority");
 
         MongoClient mongoClient = new MongoClient(uri);

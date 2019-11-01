@@ -3,11 +3,10 @@
  */
 package edu.escuelaing.ieti;
 
-import edu.escuelaing.ieti.config.AppConfiguration;
+import com.mongodb.client.gridfs.model.GridFSFile;
 import edu.escuelaing.ieti.config.JwtFilter;
 import edu.escuelaing.ieti.config.MongoOperationsConfig;
 import edu.escuelaing.ieti.model.Card;
-import edu.escuelaing.ieti.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +16,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Date;
 import java.util.List;
 
@@ -27,18 +29,21 @@ public class App implements CommandLineRunner {
     @Autowired
     MongoOperationsConfig mongoOperationsConfig;
 
-    @Bean
-    public FilterRegistrationBean jwtFilter()
-    {
-        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        registrationBean.setFilter( new JwtFilter() );
-        registrationBean.addUrlPatterns( "/api/*" );
+    @Autowired
+    GridFsTemplate gridFsTemplate;
 
-        return registrationBean;
-    }
+//    @Bean
+//    public FilterRegistrationBean jwtFilter()
+//    {
+//        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+//        registrationBean.setFilter( new JwtFilter() );
+//        registrationBean.addUrlPatterns( "/api/*" );
+//
+//        return registrationBean;
+//    }
 
     @Override
-    public void run(String... args) {
+    public void run(String... args) throws IOException {
 
         MongoOperations mongoOperation = mongoOperationsConfig.getMongoOperation();
 
@@ -56,6 +61,10 @@ public class App implements CommandLineRunner {
         System.out.println("-Todos that are assigned to given user and have priority greater equal to 5-");
         System.out.println(cards);
         System.out.println("---------------------------------------------------------------------------");
+
+        GridFSFile file = gridFsTemplate.findOne(new Query().addCriteria(Criteria.where("filename").is("testing.png")));
+        URL url = new URL("https://i.dailymail.co.uk/i/pix/tm/2007/07/lionking1807_468x325._to_468x312jpeg");
+        gridFsTemplate.store(url.openStream(), "lion.jpeg",  "image/jpeg");
     }
 
     public static void main(String[] args) {
