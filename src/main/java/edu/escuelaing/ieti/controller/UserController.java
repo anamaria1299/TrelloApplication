@@ -22,6 +22,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping()
     public ResponseEntity<?> getAllUsers() {
 
@@ -33,6 +34,7 @@ public class UserController {
         }
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("{email}")
     public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
 
@@ -45,6 +47,7 @@ public class UserController {
         }
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping()
     public ResponseEntity<?> createUser(@RequestBody User user) {
 
@@ -57,6 +60,7 @@ public class UserController {
         }
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping( value = "/login", method = RequestMethod.POST )
     public Token login( @RequestBody User login ) throws Exception {
 

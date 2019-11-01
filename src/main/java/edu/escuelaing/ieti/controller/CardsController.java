@@ -17,6 +17,7 @@ public class CardsController {
     @Autowired
     CardService cardService;
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping()
     public ResponseEntity<?> getAllCards() {
 
@@ -27,6 +28,7 @@ public class CardsController {
         }
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{email}")
     public ResponseEntity<?> getCardByResponsible(@PathVariable String email) {
 
@@ -38,6 +40,7 @@ public class CardsController {
         }
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping()
     public ResponseEntity<?> createCard(@RequestBody Card card) {
 
