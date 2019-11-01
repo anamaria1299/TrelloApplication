@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import java.util.Date;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "/users")
 @Service
 public class UserController {
