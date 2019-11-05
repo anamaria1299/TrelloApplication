@@ -18,10 +18,11 @@ public class Card {
     private String description;
     private int priority;
     private String state;
+    private String fileName;
 
     public Card() {}
 
-    public Card(String name, String description, Date dueDate, User user, UUID id, String state) {
+    public Card(String name, String description, Date dueDate, User user, UUID id, String state, String fileName) {
 
         this.name = name;
         this.description = description;
@@ -30,6 +31,23 @@ public class Card {
         this.user = user;
         this.id = id;
         this.state = state;
+        this.fileName = fileName;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public User getUser() {
@@ -92,13 +110,15 @@ public class Card {
     @Override
     public String toString() {
         return "Card{" +
-                "creationDate=" + creationDate +
+                "id=" + id +
+                ", creationDate=" + creationDate +
                 ", user=" + user +
                 ", name='" + name + '\'' +
                 ", dueDate=" + dueDate +
                 ", description='" + description + '\'' +
-                ", id=" + id +
                 ", priority=" + priority +
+                ", state='" + state + '\'' +
+                ", fileName='" + fileName + '\'' +
                 '}';
     }
 }

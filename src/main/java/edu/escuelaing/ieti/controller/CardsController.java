@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/api/v1/cards")
 @Service
 public class CardsController {
@@ -17,6 +17,7 @@ public class CardsController {
     @Autowired
     CardService cardService;
 
+    @CrossOrigin(origins = "*")
     @GetMapping()
     public ResponseEntity<?> getAllCards() {
 
@@ -27,6 +28,7 @@ public class CardsController {
         }
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{email}")
     public ResponseEntity<?> getCardByResponsible(@PathVariable String email) {
 
@@ -38,6 +40,7 @@ public class CardsController {
         }
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping()
     public ResponseEntity<?> createCard(@RequestBody Card card) {
 

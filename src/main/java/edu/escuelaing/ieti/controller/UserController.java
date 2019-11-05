@@ -22,6 +22,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @CrossOrigin(origins = "*")
     @GetMapping()
     public ResponseEntity<?> getAllUsers() {
 
@@ -33,6 +34,7 @@ public class UserController {
         }
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("{email}")
     public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
 
@@ -45,6 +47,7 @@ public class UserController {
         }
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping()
     public ResponseEntity<?> createUser(@RequestBody User user) {
 
@@ -57,6 +60,7 @@ public class UserController {
         }
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping( value = "/login", method = RequestMethod.POST )
     public Token login( @RequestBody User login ) throws Exception {
 
@@ -70,7 +74,6 @@ public class UserController {
         String username = login.getEmail();
         String password = login.getPassword();
 
-        //TODO implement logic to verify user credentials
         User user = userService.getUserByEmail(login.getEmail());
 
         if ( user == null )
@@ -84,7 +87,7 @@ public class UserController {
         {
             throw new ServletException( "Invalid login. Please check your name and password." );
         }
-        //
+
         jwtToken = Jwts.builder().setSubject( username ).claim( "roles", "user" ).setIssuedAt( new Date() ).signWith(
                 SignatureAlgorithm.HS256, "secretkey" ).compact();
 

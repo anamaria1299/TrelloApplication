@@ -33,14 +33,14 @@ public class App implements CommandLineRunner {
     GridFsTemplate gridFsTemplate;
 
 //    @Bean
-//    public FilterRegistrationBean jwtFilter()
-//    {
-//        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-//        registrationBean.setFilter( new JwtFilter() );
-//        registrationBean.addUrlPatterns( "/api/*" );
-//
-//        return registrationBean;
-//    }
+    public FilterRegistrationBean jwtFilter()
+    {
+        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        registrationBean.setFilter( new JwtFilter() );
+        registrationBean.addUrlPatterns( "/api/*" );
+
+        return registrationBean;
+    }
 
     @Override
     public void run(String... args) throws IOException {
